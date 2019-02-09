@@ -5,14 +5,17 @@ const connect = () => {
 }
 
 const student = new mongoose.Schema({
-  firstName: String
-})
+  firstName: {
+    type: String,
+    required: true
+  }
+}, {timestamps: true})
 
 const Student = new mongoose.model('student', student)
 
 connect()
   .then(async connection => {
-    const student = await Student.create({firstName: 'William Oliveira'})
+    const student = await Student.create({firstName: 'Whatever Test'})
     console.log(student)
   })
   .catch(e => console.error(e))
